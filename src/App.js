@@ -1,5 +1,5 @@
 import './App.scss';
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'https://esm.sh/react-markdown@7'
 import remarkBreaks from 'https://esm.sh/remark-breaks@3'
 import { AiFillExperiment, AiOutlineExpandAlt, AiOutlineShrink } from "react-icons/ai";
@@ -79,7 +79,7 @@ function App() {
       :<AiOutlineExpandAlt className='expand' onClick={handleToggle} />
       }
     </div>
-        <textarea id='editor' onChange={(e) => setMarkdown(e.target.value)} rows="" cols="">{placeholder}</textarea>
+        <textarea id='editor' onChange={(e) => setMarkdown(e.target.value)} rows="" cols="" value={placeholder}></textarea>
       </div>
 
       {/* Preview Container */}
