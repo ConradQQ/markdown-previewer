@@ -79,7 +79,7 @@ function App() {
       :<AiOutlineExpandAlt className='expand' onClick={handleToggle} />
       }
     </div>
-        <textarea id='editor' onChange={(e) => setMarkdown(e.target.value)} rows="" cols="" value={placeholder}></textarea>
+        <textarea id='editor' onChange={(e) => setMarkdown(e.target.value)} rows="" cols="" >{placeholder}</textarea>
       </div>
 
       {/* Preview Container */}
