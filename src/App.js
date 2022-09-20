@@ -1,12 +1,18 @@
-import './App.css';
-import { useEffect, useState } from 'react';
+import './App.scss';
+import React, { useEffect, useState, createContext } from 'react';
 import ReactMarkdown from 'https://esm.sh/react-markdown@7'
+import remarkBreaks from 'https://esm.sh/remark-breaks@3'
+import Panel from './Panel'
 
-// Prolly gotta use Marked.js to pass tests
+ export const maximizeContext = createContext();
+
 function App() {
   const [markdown, setMarkdown] = useState(``)
+  const [maximized, setMaximize] = useState(false);
+
+  const placeholder = 
   
-  const placeholder = `# Welcome to my React Markdown Previewer!
+  `# Welcome to my React Markdown Previewer!
 
   ## This is a sub-heading...
   ### And here's some other cool stuff:
@@ -54,18 +60,33 @@ function App() {
 
   useEffect(() => {
     setMarkdown(placeholder)
-  }, [])
+  }, [placeholder])
 
   return (
+  <maximizeContext value={maximized}>
     <div className="App">
-      <div >
-        <textarea placeholder={placeholder} id='editor' onChange={(e) => setMarkdown(e.target.value)} rows="" cols=""></textarea>
+      {/* Editor Container */}
+      <div 
+      className={ maximized 
+        ? 'editor-container-expanded'
+        : 'editor-container'
+
+      }
+      
+      >
+        <Panel title='Editor' />
+        <textarea id='editor' onChange={(e) => setMarkdown(e.target.value)} rows="" cols="">{placeholder}</textarea>
       </div>
 
-      <div id='preview'>
-      <ReactMarkdown children={markdown} />
+      {/* Preview Container */}
+      <div className='preview-container'>
+        <Panel title='Preview'  />
+        <div id='preview'>
+      <ReactMarkdown children={markdown} remarkPlugins={[remarkBreaks]} />
+        </div>
       </div>
     </div>
+  </maximizeContext>
   );
 }
 
