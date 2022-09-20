@@ -1,7 +1,7 @@
 import './App.scss';
 import React, { useEffect, useState } from 'react';
-import ReactMarkdown from 'https://esm.sh/react-markdown@7'
-import remarkBreaks from 'https://esm.sh/remark-breaks@3'
+import ReactMarkdown from 'react-markdown'
+import remarkBreaks from 'remark-breaks'
 import { AiFillExperiment, AiOutlineExpandAlt, AiOutlineShrink } from "react-icons/ai";
 
 function App() {
