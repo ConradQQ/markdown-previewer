@@ -1,9 +1,13 @@
 $componentBg: #cdb4db;
-
+$accentColor: #bde0fe;
+@import url('https://fonts.googleapis.com/css?family=Russo+One');
 @media only screen and (max-width: 475px)
 { 
   #preview {
     font-size: 10px;
+  }
+  .editor-container {
+    width: 90vw;
   }
 }
 
@@ -20,10 +24,40 @@ $componentBg: #cdb4db;
  
 }
 
+.panel {
+width: 100%;
+ min-height: 11%;
+ max-height: 11%;
+ background: $accentColor;
+ display: flex;
+ flex-direction: row;
+ justify-content: flex-start;
+ font-size: 25px;
+ box-shadow: 0px 2px 10px black;
+ border-bottom: 1px solid black;
+ padding-left: .5em;
+ p {
+  font-size: 14px;
+  margin-top: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  margin-left: 1em;
+  font-family: 'Russo One';
+  font-weight: bold;
+ }
+}
+.expand {
+  cursor: pointer;
+ }
+ .expand:hover {
+  color: #ffafcc;
+  font-weight: bolder;
+ }
+
 .editor-container {
 background: $componentBg;
-min-width: 40vw;
-height: 25vh;  
+min-width: 60vw;
+min-height: 25vh;  
 overflow:hidden;
 border: 1px solid black;
 box-shadow: 2px 5px 10px black;

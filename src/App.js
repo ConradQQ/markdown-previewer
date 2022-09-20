@@ -1,14 +1,12 @@
 import './App.scss';
-import React, { useEffect, useState, createContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import ReactMarkdown from 'https://esm.sh/react-markdown@7'
 import remarkBreaks from 'https://esm.sh/remark-breaks@3'
-import Panel from './Panel'
-
- export const maximizeContext = createContext();
+import { AiFillExperiment, AiOutlineExpandAlt, AiOutlineShrink } from "react-icons/ai";
 
 function App() {
   const [markdown, setMarkdown] = useState(``)
-  const [maximized, setMaximize] = useState(false);
+  const [maximized, setMaximized] = useState(false);
 
   const placeholder = 
   
@@ -62,31 +60,41 @@ function App() {
     setMarkdown(placeholder)
   }, [placeholder])
 
+  const handleToggle = () => {
+    setMaximized(!maximized)
+  }
   return (
-  <maximizeContext value={maximized}>
+  
     <div className="App">
       {/* Editor Container */}
-      <div 
-      className={ maximized 
-        ? 'editor-container-expanded'
-        : 'editor-container'
-
+      <div className={maximized
+      ? 'editor-container-expanded'
+      : 'editor-container'}>
+        
+      <div className='panel'>
+     <AiFillExperiment />
+     <p>Editor</p>
+     {maximized 
+      ? <AiOutlineShrink className='expand' onClick={handleToggle} />
+      :<AiOutlineExpandAlt className='expand' onClick={handleToggle} />
       }
-      
-      >
-        <Panel title='Editor' />
+    </div>
         <textarea id='editor' onChange={(e) => setMarkdown(e.target.value)} rows="" cols="">{placeholder}</textarea>
       </div>
 
       {/* Preview Container */}
       <div className='preview-container'>
-        <Panel title='Preview'  />
+        <div className='panel'>
+     <AiFillExperiment />
+     <p>Preview</p>
+     
+    </div>
         <div id='preview'>
       <ReactMarkdown children={markdown} remarkPlugins={[remarkBreaks]} />
         </div>
       </div>
     </div>
-  </maximizeContext>
+  
   );
 }
 
